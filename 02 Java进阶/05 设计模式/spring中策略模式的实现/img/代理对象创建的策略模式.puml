@@ -1,0 +1,39 @@
+@startuml
+
+
+
+class ProxyCreatorSupport{
+
+}
+
+class DefaultAopProxyFactory implements AopProxyFactory{
+    public AopProxy createAopProxy(AdvisedSupport config)
+}
+
+interface AopProxyFactory {
+    AopProxy createAopProxy(AdvisedSupport config);
+}
+
+interface AopProxy {
+    Object getProxy(ClassLoader classLoader);
+}
+
+class CglibAopProxy implements AopProxy{
+
+public Object getProxy(ClassLoader classLoader)
+}
+
+class JdkDynamicAopProxy implements AopProxy{
+public Object getProxy(ClassLoader classLoader)
+}
+
+class ObjenesisCglibAopProxy extends CglibAopProxy
+
+
+AopProxy <.. ProxyFactoryBean
+AopProxy <.. AopProxyFactory
+ProxyFactoryBean ..> ProxyCreatorSupport:<<create>>
+ProxyCreatorSupport ..> DefaultAopProxyFactory:<<create>>
+DefaultAopProxyFactory ..> JdkDynamicAopProxy:<<create>>
+DefaultAopProxyFactory ..> ObjenesisCglibAopProxy:<<create>>
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+
+class Context
+class Strategy
+class ConcreteStrate
+
+Context o-- Strategy
+Strategy <|-- ConcreteStrate
+@enduml

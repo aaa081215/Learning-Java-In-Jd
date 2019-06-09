@@ -1,0 +1,78 @@
+css——文本样式
+
+下面是一些常用设置文本样式的css样式：
+
+text-decoration: underline;                  /* 设置文字下划线 */
+
+text-indent: 35px;                                /* 设置缩进 */
+
+text-transform: uppercase;                 /* 设置英文字母转大写 */
+
+letter-spacing: 3px;                             /* 设置字间距 */
+
+word-spacing: 10px;                            /* 设置词间距 */
+
+ vertical-align: -20px;                          /* 设置垂直对齐 */
+ 
+
+1.text-decoration
+
+说明
+这个属性允许对文本设置某种效果，如加下划线。如果后代元素没有自己的装饰，祖先元素上设置的装饰会“延伸”到后代元素中。不要求用户代理支持 blink。
+
+默认值：	none
+继承性：	no
+版本：	CSS1
+JavaScript 语法：	object.style.textDecoration="overline"
+可能的值
+值	描述
+none	默认。定义标准的文本。
+underline	定义文本下的一条线。
+overline	定义文本上的一条线。
+line-through	定义穿过文本下的一条线。
+blink	定义闪烁的文本。
+inherit	规定应该从父元素继承 text-decoration 属性的值。
+示例
+复制代码
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文本实例-设置文本字体效果</title>
+    <style type="text/css">
+    h2 {
+        text-decoration: underline;
+    }
+
+    .p1 {
+        text-decoration: overline;
+    }
+
+    .p2 {
+        text-decoration: line-through;
+    }
+
+    .sp1 {
+        text-decoration: blink;
+    }
+
+    .decoration {
+        text-decoration: underline;
+        padding: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>none默认。定义标准的文本</h1>
+    <h2>underline定义文本下的一条线。</h2>
+    <p class="p1">overline定义文本上的一条线。</p>
+    <p class="p2">line-through定义穿过文本下的一条线。</p>
+    <span class="sp1">blink定义闪烁的文本。</span>
+    <div class="decoration">
+        <span class="sp2">inherit规定应该从父元素继承 text-decoration 属性的值。</span>
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,19 @@
+作为命令式编程的控制结构——顺序、循环和分支之一，循环代码非常普遍。在事务处理型系统（我们的大多数业务系统一般都为这种类型的系统），
+在这类系统中写循环时一定注意循环次数可预期(可控)，否则易造成服务响应超时、内存溢出等异常状况。以线上的几个例子为大家参考：
+
+WMS的储位定位是基于订单的SKU寻找储位，然后根据储位的数量和订单数量匹配选择储位组合——即从哪些储位拣货。该逻辑实现时曾这样写（伪码）：
+    List<StockLocation> cells = StockLocation.findby(SKU);//查找存储该SKU的储位
+    for(int i = 1; i < 2 ^ cells.size(); i++) {
+        List<StockLocation> selectedCells = new ArrayList();
+        for ( int j = 0; j < cells.size(); j ++) {
+            if (i >> j & 1 == 1) {
+                selectedCells.Add(cells[j]);
+            }
+        }
+        
+        //基于selectedCells计算是否满足数量需求
+        ...
+    }
+
+这段代码就是寻找满足要求的拣货区储位组合，一般而言单个SKU的存储储位不会很多，但当时线上某个SKU的存储储位达到20个，而且当天该SKU促销，导致大量订单定位超时——每次定位需要循环达到2^20 * 20次。
+
